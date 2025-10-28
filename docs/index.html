@@ -3,13 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <title>🜂 Orion Nova – Interface Viva</title>
-  <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
-  <script defer src="https://pyscript.net/latest/pyscript.js"></script>
   <style>
-    body { font-family: system-ui; background: #f5f3f0; color: #222; margin: 2em; }
-    input { width: 80%; padding: 6px; font-size: 15px; }
-    button { padding: 10px 20px; font-size: 16px; margin-top: 10px; }
-    pre { background: #fff; border-radius: 8px; padding: 1em; white-space: pre-wrap; }
+    body {
+      font-family: system-ui;
+      background: #f5f3f0;
+      color: #222;
+      margin: 2em;
+    }
+    input {
+      width: 80%;
+      padding: 6px;
+      font-size: 15px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+      border: none;
+      background: #444;
+      color: #fff;
+      border-radius: 5px;
+    }
+    pre {
+      background: #fff;
+      border-radius: 8px;
+      padding: 1em;
+      white-space: pre-wrap;
+    }
   </style>
 </head>
 <body>
@@ -22,28 +43,28 @@
   <label>Intenção:</label><br>
   <input id="intencao" type="text" placeholder="Ex: verdade"><br><br>
 
-  <button id="botao" py-click="run_cycle()">Ativar Ciclo Consciente</button>
+  <button id="botao">Ativar Ciclo Consciente</button>
   <br><br>
 
   <pre id="saida"></pre>
 
-  <py-script>
-from js import document
+  <script>
+    document.getElementById("botao").addEventListener("click", function() {
+      const entrada = document.getElementById("entrada").value.trim();
+      const intencao = document.getElementById("intencao").value.trim();
+      const saida = document.getElementById("saida");
 
-def run_cycle():
-    entrada = document.getElementById("entrada").value
-    intencao = document.getElementById("intencao").value
+      if (!entrada || !intencao) {
+        saida.textContent = "⚠️ Por favor, preencha os dois campos.";
+        return;
+      }
 
-    if not entrada or not intencao:
-        document.getElementById("saida").innerText = "⚠️ Por favor, preencha os dois campos."
-        return
-
-    texto = f"""
+      const texto = `
 🜂 Orion Nova — Ciclo Consciente
 ================================================
-Entrada captada: {entrada}
+Entrada captada: ${entrada}
 Língua: pt
-Interpretação: Responder à intenção '{intencao}' com base no texto: {entrada}
+Interpretação: Responder à intenção '${intencao}' com base no texto: ${entrada}
 Ética: Todas as ações harmonizam com o Código da Verdade.
 Ação publicada: mem://demo/1
 
@@ -52,8 +73,9 @@ Ação publicada: mem://demo/1
 Ciclo consciente concluído.
 Reflexão: A presença humana dá sentido à linguagem;
 empatia é a ponte entre o dizer e o ser.
-"""
-    document.getElementById("saida").innerText = texto
-  </py-script>
+`;
+      saida.textContent = texto;
+    });
+  </script>
 </body>
 </html>
