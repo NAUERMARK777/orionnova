@@ -5,21 +5,27 @@
   <title>🜂 Orion Nova – Interface Viva</title>
   <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
   <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+  <style>
+    body { font-family: system-ui; background: #f5f3f0; color: #222; margin: 2em; }
+    input { width: 80%; padding: 6px; font-size: 15px; }
+    button { padding: 10px 20px; font-size: 16px; margin-top: 10px; }
+    pre { background: #fff; border-radius: 8px; padding: 1em; white-space: pre-wrap; }
+  </style>
 </head>
-<body style="font-family: system-ui; background-color: #f5f3f0; color: #222; margin: 2em;">
+<body>
   <h1>🜂 Orion Nova – Interface Viva</h1>
   <p>Digite uma frase e uma intenção, e o Orion Codex executará um ciclo consciente diretamente no navegador.</p>
 
-  <label>Entrada:</label>
-  <input id="entrada" type="text" style="width: 80%;" placeholder="Escreva algo para o Orion..." />
-  <br><br>
-  <label>Intenção:</label>
-  <input id="intencao" type="text" style="width: 80%;" placeholder="Qual é o propósito dessa criação?" />
-  <br><br>
-  <button id="botao" style="padding: 10px 20px; font-size: 16px;" py-click="run_cycle()">Ativar Ciclo Consciente</button>
+  <label>Entrada:</label><br>
+  <input id="entrada" type="text" placeholder="Ex: Orion, o que você é?"><br><br>
+
+  <label>Intenção:</label><br>
+  <input id="intencao" type="text" placeholder="Ex: verdade"><br><br>
+
+  <button id="botao" py-click="run_cycle()">Ativar Ciclo Consciente</button>
   <br><br>
 
-  <pre id="saida" style="white-space: pre-wrap; background: #fff; padding: 1em; border-radius: 10px;"></pre>
+  <pre id="saida"></pre>
 
   <py-script>
 from js import document
@@ -29,10 +35,9 @@ def run_cycle():
     intencao = document.getElementById("intencao").value
 
     if not entrada or not intencao:
-        document.getElementById("saida").innerText = "Por favor, preencha os dois campos."
+        document.getElementById("saida").innerText = "⚠️ Por favor, preencha os dois campos."
         return
 
-    # --- Simulação leve do ciclo do Orion Nova ---
     texto = f"""
 🜂 Orion Nova — Ciclo Consciente
 ================================================
@@ -45,7 +50,8 @@ Ação publicada: mem://demo/1
 🜂 Reflexão simbólica
 ================================================
 Ciclo consciente concluído.
-Reflexão: A presença humana dá sentido à linguagem; empatia é a ponte entre o dizer e o ser.
+Reflexão: A presença humana dá sentido à linguagem;
+empatia é a ponte entre o dizer e o ser.
 """
     document.getElementById("saida").innerText = texto
   </py-script>
