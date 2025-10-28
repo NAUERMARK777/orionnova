@@ -1,11 +1,13 @@
+import sys, os
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 import streamlit as st
 from orion_nova import (
     ActionBody, ArtisticVoice, CodesOfConduct, OrionNova,
     SymbolicMemory, default_codex
 )
-from orion_nova.ethics import EthicalCore
-from orion_nova.interface import SomaInterface
-from orion_nova.memory import MemoryTrace
+from .orion_nova.ethics import EthicalCore
+from .orion_nova.interface import SomaInterface
+from .orion_nova.memory import MemoryTrace
 
 # --- Setup simplificado (igual ao demo_orion) ---
 class EchoTranscriber:
